@@ -1,0 +1,10 @@
+.vs/
+bin/
+obj/
+*.suo
+*.swp
+*.user
+lib/
+tools/
+packages/
+LICENSE
