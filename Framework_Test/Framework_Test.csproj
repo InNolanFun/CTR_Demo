@@ -101,12 +101,6 @@
     <Compile Include="controls\ChangeUserMessage.Designer.cs">
       <DependentUpon>ChangeUserMessage.cs</DependentUpon>
     </Compile>
-    <Compile Include="controls\Data1Detail.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="controls\Data1Detail.Designer.cs">
-      <DependentUpon>Data1Detail.cs</DependentUpon>
-    </Compile>
     <Compile Include="controls\Data_Install.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -145,9 +139,6 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <EmbeddedResource Include="controls\Data1Detail.resx">
-      <DependentUpon>Data1Detail.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="controls\Data_Install.resx">
       <DependentUpon>Data_Install.cs</DependentUpon>
     </EmbeddedResource>

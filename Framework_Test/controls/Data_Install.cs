@@ -20,20 +20,73 @@ namespace Framework_Test.controls
         private void button1_Click(object sender, EventArgs e)
         {
             var ls = new List<string> {
-textBoxlength_of_work.Text ,
-textBoxName.Text ,
-textBoxProduction_capacity.Text ,
-textBoxRemarks.Text ,
-textBoxworkshop.Text ,
-textBoxWork_content.Text
+                length_of_work_textBox.Text ,
+                Name_textBox.Text ,
+                Production_capacity_textBox.Text ,
+                Remarks_textBox.Text ,
+                workshop_textBox.Text ,
+                Work_content_textBox.Text
             };
-            textBoxlength_of_work.Text =
-                textBoxName.Text =
-                textBoxProduction_capacity.Text =
-                textBoxRemarks.Text =
-                textBoxworkshop.Text =
-                textBoxWork_content.Text =
-                "";
+
+            var dgv = dataGridView1;
+
+            var rowc = dgv.Rows.Count - 1;
+            dgv.Rows.Add();
+            dgv[0, rowc].Value = Name_textBox.Text;
+            dgv[1, rowc].Value = Work_content_textBox.Text;
+            dgv[2, rowc].Value = length_of_work_textBox.Text;
+            dgv[3, rowc].Value = workshop_textBox.Text;
+            dgv[4, rowc].Value = Production_capacity_textBox.Text;
+            dgv[5, rowc].Value = Remarks_textBox.Text;
+
+            //reset text
+            length_of_work_textBox.Text =
+            Name_textBox.Text =
+            Production_capacity_textBox.Text =
+            Remarks_textBox.Text =
+            workshop_textBox.Text =
+            Work_content_textBox.Text =
+            "";
+            Name_textBox.Select();
+        }
+
+        private void 删除此行ToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+
+            //if (e.Button == MouseButtons.Right) {
+            //    this.dataGridView1.Rows[e.RowIndex].Selected = true;
+            //    this.rowIndex = e.RowIndex;
+            //    this.dataGridView1.CurrentCell = this.dataGridView1.Rows[e.RowIndex].Cells[1];
+            //    this.contextMenuStrip1.Show(this.dataGridView1, e.Location);
+            //    contextMenuStrip1.Show(Cursor.Position);
+            //}
+        }
+
+        private void contextMenuStrip1_Opening(object sender, CancelEventArgs e)
+        {
+
+        }
+
+        private void 删除行ToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            var ty = e.GetType();
+            var rowc = dataGridView1.SelectedRows;
+            if (rowc.Count != 0) {
+                var rowls = new List<DataGridViewRow>();
+                foreach (DataGridViewRow item in rowc) {
+                    rowls.Add(item);
+                }
+                foreach (DataGridViewRow item in rowc) {
+                    dataGridView1.Rows.Remove(item);
+                }
+            } else {
+                var cells = dataGridView1.SelectedCells;
+                if (cells.Count != 0) {
+                    foreach (DataGridViewTextBoxCell item in cells) {
+                        dataGridView1.Rows.RemoveAt(item.RowIndex);
+                    }
+                }
+            }
         }
     }
 }

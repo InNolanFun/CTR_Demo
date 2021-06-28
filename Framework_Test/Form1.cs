@@ -50,7 +50,7 @@ namespace Framework_Test
 
         private void Form1_Load(object sender, EventArgs e)
         {
-            var conn = new ContractMessage().Create();
+            var conn = new ValueDetail().Create();
 
         }
     }

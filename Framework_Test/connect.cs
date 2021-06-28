@@ -27,7 +27,7 @@ namespace Framework_Test
         public string Production_capacity { get; set; }
         public string Remarks { get; set; }
     }
-    class ContractMessage : Dbconnection
+    class ValueDetail : Dbconnection
     {
         private string tablename = "ContractMessage";
         public bool Create()

@@ -67,6 +67,8 @@ namespace Framework_Test.controls
         private void DateInstall()
         {
             groupBox1.Controls.Add(new Data_Install { Dock = DockStyle.Fill });
+            show_tableLayoutPanel.Visible = false;
+            groupBox1.Dock = DockStyle.Fill;
         }
     }
 }
