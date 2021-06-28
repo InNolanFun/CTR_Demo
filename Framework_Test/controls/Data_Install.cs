@@ -50,18 +50,6 @@ namespace Framework_Test.controls
             Name_textBox.Select();
         }
 
-        private void 删除此行ToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-
-            //if (e.Button == MouseButtons.Right) {
-            //    this.dataGridView1.Rows[e.RowIndex].Selected = true;
-            //    this.rowIndex = e.RowIndex;
-            //    this.dataGridView1.CurrentCell = this.dataGridView1.Rows[e.RowIndex].Cells[1];
-            //    this.contextMenuStrip1.Show(this.dataGridView1, e.Location);
-            //    contextMenuStrip1.Show(Cursor.Position);
-            //}
-        }
-
         private void contextMenuStrip1_Opening(object sender, CancelEventArgs e)
         {
 

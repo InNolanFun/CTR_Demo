@@ -47,6 +47,9 @@
     <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
       <HintPath>..\packages\EntityFramework.6.4.4\lib\net45\EntityFramework.SqlServer.dll</HintPath>
     </Reference>
+    <Reference Include="HZH_Controls, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\HZH_Controls.1.0.14\lib\net40\HZH_Controls.dll</HintPath>
+    </Reference>
     <Reference Include="Microsoft.Data.Sqlite, Version=5.0.7.0, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.Data.Sqlite.Core.5.0.7\lib\netstandard2.0\Microsoft.Data.Sqlite.dll</HintPath>
     </Reference>
@@ -72,6 +75,7 @@
       <HintPath>..\packages\System.Data.SQLite.Linq.1.0.114.0\lib\net46\System.Data.SQLite.Linq.dll</HintPath>
       <Private>True</Private>
     </Reference>
+    <Reference Include="System.DirectoryServices" />
     <Reference Include="System.Memory, Version=4.0.1.1, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
       <HintPath>..\packages\System.Memory.4.5.3\lib\netstandard2.0\System.Memory.dll</HintPath>
     </Reference>
@@ -94,7 +98,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="connect.cs" />
+    <Compile Include="ConnectDB\connect.cs" />
+    <Compile Include="ConnectDB\makeConnect.cs" />
     <Compile Include="controls\ChangeUserMessage.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -131,6 +136,12 @@
     <Compile Include="controls\showdrew.Designer.cs">
       <DependentUpon>showdrew.cs</DependentUpon>
     </Compile>
+    <Compile Include="controls\UserSettingGUI.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="controls\UserSettingGUI.Designer.cs">
+      <DependentUpon>UserSettingGUI.cs</DependentUpon>
+    </Compile>
     <Compile Include="Form1.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -150,6 +161,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="controls\showdrew.resx">
       <DependentUpon>showdrew.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="controls\UserSettingGUI.resx">
+      <DependentUpon>UserSettingGUI.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Form1.resx">
       <DependentUpon>Form1.cs</DependentUpon>

@@ -19,7 +19,7 @@ namespace Framework_Test.controls
         }
         public void setmodulename(string name)
         {
-            this.groupBox1.Text = name;
+
         }
         private void maincontrol_Load(object sender, EventArgs e)
         {
@@ -35,9 +35,11 @@ namespace Framework_Test.controls
                     UserSetting();
                     break;
                 case "角色/岗位设置":
-
+                    Position_setting();
                     break;
-                case "菜单功能设置": break;
+                case "菜单功能设置":
+                    Menu_function_settings();
+                    break;
                 case "修改密码":
                     ChangePSQ();
                     break;
@@ -46,29 +48,35 @@ namespace Framework_Test.controls
             }
         }
 
+        private void Menu_function_settings()
+        {
+
+            throw new NotImplementedException();
+        }
+
+        private void Position_setting()
+        {
+            throw new NotImplementedException();
+        }
+
         private void ChangePSQ()
         {
             show_tableLayoutPanel.Controls.Add(new pswchange() { Dock = DockStyle.Fill }, 1, 0);
-            groupBox1.Width = 0;
         }
 
         private void UserSetting()
         {
-            throw new NotImplementedException();
+            show_tableLayoutPanel.Controls.Add(new UserSettingGUI() { Dock = DockStyle.Fill }, 1, 0);
         }
 
         private void SearchAllMessage()
         {
             show_tableLayoutPanel.Controls.Add(new showdrew() { Dock = DockStyle.Fill }, 1, 0);
-            groupBox1.Width = 0;
-            throw new NotImplementedException();
         }
 
         private void DateInstall()
         {
-            groupBox1.Controls.Add(new Data_Install { Dock = DockStyle.Fill });
-            show_tableLayoutPanel.Visible = false;
-            groupBox1.Dock = DockStyle.Fill;
+            show_tableLayoutPanel.Controls.Add(new Data_Install { Dock = DockStyle.Fill }, 1, 0);
         }
     }
 }

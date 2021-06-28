@@ -28,7 +28,6 @@
         private void InitializeComponent()
         {
             this.button1 = new System.Windows.Forms.Button();
-            this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.show_tableLayoutPanel = new System.Windows.Forms.TableLayoutPanel();
             this.SuspendLayout();
             // 
@@ -43,26 +42,16 @@
             this.button1.UseVisualStyleBackColor = true;
             this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
-            // groupBox1
-            // 
-            this.groupBox1.Dock = System.Windows.Forms.DockStyle.Left;
-            this.groupBox1.Location = new System.Drawing.Point(0, 0);
-            this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(194, 396);
-            this.groupBox1.TabIndex = 1;
-            this.groupBox1.TabStop = false;
-            this.groupBox1.Text = "groupBox1";
-            // 
             // show_tableLayoutPanel
             // 
             this.show_tableLayoutPanel.ColumnCount = 1;
             this.show_tableLayoutPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
             this.show_tableLayoutPanel.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.show_tableLayoutPanel.Location = new System.Drawing.Point(194, 0);
+            this.show_tableLayoutPanel.Location = new System.Drawing.Point(0, 0);
             this.show_tableLayoutPanel.Name = "show_tableLayoutPanel";
             this.show_tableLayoutPanel.RowCount = 1;
             this.show_tableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.show_tableLayoutPanel.Size = new System.Drawing.Size(393, 396);
+            this.show_tableLayoutPanel.Size = new System.Drawing.Size(587, 396);
             this.show_tableLayoutPanel.TabIndex = 2;
             // 
             // maincontrol
@@ -71,7 +60,6 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.Controls.Add(this.button1);
             this.Controls.Add(this.show_tableLayoutPanel);
-            this.Controls.Add(this.groupBox1);
             this.Name = "maincontrol";
             this.Size = new System.Drawing.Size(587, 396);
             this.Load += new System.EventHandler(this.maincontrol_Load);
@@ -82,7 +70,6 @@
         #endregion
 
         private System.Windows.Forms.Button button1;
-        private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.TableLayoutPanel show_tableLayoutPanel;
     }
 }

@@ -7,3 +7,6 @@ this.panel1.TabIndex = 0;
 
 this.tableLayoutPanel1.Controls.Add(this.panel1, 1, 0);
 this.tableLayoutPanel1.Controls.Add(this.panel2, 1, 1);
+
+三方控件库
+https://gitee.com/kwwwvagaa/net_winform_custom_control
