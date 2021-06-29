@@ -37,26 +37,18 @@ namespace Framework_Test.controls
                 case "角色/岗位设置":
                     Position_setting();
                     break;
-                case "菜单功能设置":
-                    Menu_function_settings();
-                    break;
                 case "修改密码":
                     ChangePSQ();
                     break;
                 default:
+                    MessageBox.Show("未设置,联系开发.");
                     break;
             }
         }
 
-        private void Menu_function_settings()
-        {
-
-            throw new NotImplementedException();
-        }
-
         private void Position_setting()
         {
-            throw new NotImplementedException();
+            show_tableLayoutPanel.Controls.Add(new Positionsetting() { Dock = DockStyle.Fill }, 1, 0);
         }
 
         private void ChangePSQ()

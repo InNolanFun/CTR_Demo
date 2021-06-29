@@ -101,9 +101,7 @@ namespace Framework_Test.controls
             lsdetail = (from UserGroup i in usmsg select i).ToList();
             listCombobox = namels;
             Name_comBox.Items.Clear();
-            foreach (var item in listCombobox) {
-                Name_comBox.Items.Add(item);
-            }
+            Name_comBox.Items.AddRange(listCombobox.ToArray());
         }
         private List<UserGroup> lsdetail = new List<UserGroup>();
         private List<string> listCombobox = new List<string>();

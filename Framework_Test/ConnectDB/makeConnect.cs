@@ -23,7 +23,7 @@ namespace Framework_Test.ConnectDB
         }
         private List<dbvalue> MakeDBList()
         {
-            //基础
+            //ContractMessage
             dbls.Add(makedbvalue("ContractMessage",
                             "Create table {0}( " +
                                 "ID INTEGER PRIMARY KEY NOT NULL," +
@@ -52,24 +52,30 @@ namespace Framework_Test.ConnectDB
                             "",
                             "select * from {0}",
                             ""));
-            //user
+            //UserGroup
             dbls.Add(makedbvalue("UserGroup",
                             "Create table {0}( " +
                                 "USID INTEGER PRIMARY KEY NOT NULL," +
                                 "USName string," +
                                 "USNumber string," +
                                 "USworkshop string," +
+                                "USPsw string," +
+                                "USPower string," +
                                 "USRemarks string" +
                                 ")",
                             "insert into {0} (" +
                                 "USName," +
                                 "USNumber," +
                                 "USworkshop," +
+                                "USPsw," +
+                                "USPower," +
                                 "USRemarks" +
                             ") values (" +
                                 ":USName," +
                                 ":USNumber," +
                                 ":USworkshop," +
+                                ":USPsw," +
+                                ":USPower," +
                                 ":USRemarks" +
                             ")",
                             "",

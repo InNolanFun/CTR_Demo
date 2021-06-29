@@ -26,8 +26,8 @@ namespace Framework_Test.controls
         private void showresult()
         {
             var conn = new ConnectDB.makeConnect();
-            //debugmsg(conn);
             var usmsg = conn.GetMessage("UserGroup");
+            //debugmsg(conn);
             var re = from UserGroup i in usmsg group i by i.USworkshop into g select g;
             treeView1.Nodes.Clear();
             foreach (var item in re) {
@@ -61,11 +61,15 @@ namespace Framework_Test.controls
             var USNumber = usg.USNumber;
             var USworkshop = usg.USworkshop;
             var USRemarks = usg.USRemarks;
+            var USPower = usg.USPower;
+            var USPsw = usg.USPsw;
             var parami = new {
                 USName,
                 USNumber,
                 USworkshop,
-                USRemarks
+                USRemarks,
+                USPower,
+                USPsw
             };
             var result = new ValueDetail().Insert(conn.dbls[1].Install_sql, parami);
         }
@@ -77,7 +81,9 @@ namespace Framework_Test.controls
                 USName = textBox1.Text,
                 USNumber = textBox2.Text,
                 USworkshop = textBox3.Text,
-                USRemarks = textBox4.Text
+                USRemarks = textBox4.Text,
+                USPower = comboBox1.Text,
+                USPsw = comboBox1.Text
             };
             insertintodb(new ConnectDB.makeConnect(), new_us_msg);
             showresult();

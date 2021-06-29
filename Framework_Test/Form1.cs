@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Framework_Test.controls;
+using System;
 using System.Collections.Generic;
 using System.Windows.Forms;
 
@@ -52,6 +53,23 @@ namespace Framework_Test
         {
             var conn = new ConnectDB.makeConnect();
             conn.checkDBexisit();
+            login(null, null);
+        }
+
+        private void login(object sender, EventArgs e)
+        {
+            var s = menuStrip1.Items[1].OwnerItem;
+            var c = menuStrip1.Items.Count;
+            menuStrip1.Items[2].Visible = true;
+            menuStrip1.Items[0].Visible =
+            menuStrip1.Items[1].Visible = false;
+            if (new LogInForm().ShowDialog() == DialogResult.OK) {
+                menuStrip1.Items[2].Visible = false;
+            } else {
+                menuStrip1.Items[2].Visible = true;
+                menuStrip1.Items[0].Visible =
+                menuStrip1.Items[1].Visible = false;
+            }
         }
     }
 }

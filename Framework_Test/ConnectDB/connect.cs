@@ -37,6 +37,10 @@ namespace Framework_Test
         /// </summary>
         public string USName { get; set; }
         /// <summary>
+        /// 密码
+        /// </summary>
+        public string USPsw { get; set; } = "123456";
+        /// <summary>
         /// 工号
         /// </summary>
         public string USNumber { get; set; }
@@ -44,6 +48,10 @@ namespace Framework_Test
         /// 厂区
         /// </summary>
         public string USworkshop { get; set; }
+        /// <summary>
+        /// 权限
+        /// </summary>
+        public string USPower { get; set; }
         /// <summary>
         /// 备注
         /// </summary>

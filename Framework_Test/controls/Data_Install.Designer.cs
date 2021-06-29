@@ -51,10 +51,10 @@ namespace Framework_Test.controls
             this.label2 = new System.Windows.Forms.Label();
             this.Work_content_textBox = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
+            this.Name_comBox = new System.Windows.Forms.ComboBox();
             this.panel2 = new System.Windows.Forms.Panel();
             this.button1 = new System.Windows.Forms.Button();
             this.button2 = new System.Windows.Forms.Button();
-            this.Name_comBox = new System.Windows.Forms.ComboBox();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.contextMenuStrip1.SuspendLayout();
             this.panel1.SuspendLayout();
@@ -262,6 +262,17 @@ namespace Framework_Test.controls
             this.label1.TabIndex = 2;
             this.label1.Text = "姓名";
             // 
+            // Name_comBox
+            // 
+            this.Name_comBox.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.Name_comBox.FormattingEnabled = true;
+            this.Name_comBox.Location = new System.Drawing.Point(83, 3);
+            this.Name_comBox.Name = "Name_comBox";
+            this.Name_comBox.Size = new System.Drawing.Size(209, 20);
+            this.Name_comBox.TabIndex = 14;
+            this.Name_comBox.TextUpdate += new System.EventHandler(this.comboBox1_TextUpdate);
+            this.Name_comBox.TextChanged += new System.EventHandler(this.Name_comBox_TextChanged);
+            // 
             // panel2
             // 
             this.panel2.Controls.Add(this.button1);
@@ -292,17 +303,6 @@ namespace Framework_Test.controls
             this.button2.TabIndex = 4;
             this.button2.Text = "从Excel导入";
             this.button2.UseVisualStyleBackColor = true;
-            // 
-            // Name_comBox
-            // 
-            this.Name_comBox.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.Name_comBox.FormattingEnabled = true;
-            this.Name_comBox.Location = new System.Drawing.Point(83, 3);
-            this.Name_comBox.Name = "Name_comBox";
-            this.Name_comBox.Size = new System.Drawing.Size(209, 20);
-            this.Name_comBox.TabIndex = 14;
-            this.Name_comBox.TextUpdate += new System.EventHandler(this.comboBox1_TextUpdate);
-            this.Name_comBox.TextChanged += new System.EventHandler(this.Name_comBox_TextChanged);
             // 
             // Data_Install
             // 
