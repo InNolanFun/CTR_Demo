@@ -32,11 +32,11 @@ namespace Framework_Test.controls
             this.label1 = new System.Windows.Forms.Label();
             this.textBox1 = new System.Windows.Forms.TextBox();
             this.textBox2 = new System.Windows.Forms.TextBox();
-            this.textBox3 = new System.Windows.Forms.TextBox();
-            this.label2 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.button1 = new System.Windows.Forms.Button();
             this.button2 = new System.Windows.Forms.Button();
+            this.label2 = new System.Windows.Forms.Label();
+            this.textBox3 = new System.Windows.Forms.TextBox();
             this.tableLayoutPanel1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -93,25 +93,6 @@ namespace Framework_Test.controls
             this.textBox2.TabIndex = 1;
             this.textBox2.DoubleClick += new System.EventHandler(this.DoubleClick_change_passwordchar);
             // 
-            // textBox3
-            // 
-            this.textBox3.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.textBox3.Location = new System.Drawing.Point(93, 289);
-            this.textBox3.Name = "textBox3";
-            this.textBox3.PasswordChar = '*';
-            this.textBox3.Size = new System.Drawing.Size(556, 21);
-            this.textBox3.TabIndex = 1;
-            this.textBox3.DoubleClick += new System.EventHandler(this.DoubleClick_change_passwordchar);
-            // 
-            // label2
-            // 
-            this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(3, 143);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(83, 36);
-            this.label2.TabIndex = 0;
-            this.label2.Text = "新密码:\r\n(双击可以显示密码)";
-            // 
             // label3
             // 
             this.label3.AutoSize = true;
@@ -142,6 +123,25 @@ namespace Framework_Test.controls
             this.button2.Text = "确认修改密码";
             this.button2.UseVisualStyleBackColor = true;
             this.button2.Click += new System.EventHandler(this.button2_Click);
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(3, 143);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(83, 36);
+            this.label2.TabIndex = 0;
+            this.label2.Text = "新密码:\r\n(双击可以显示密码)";
+            // 
+            // textBox3
+            // 
+            this.textBox3.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.textBox3.Location = new System.Drawing.Point(93, 289);
+            this.textBox3.Name = "textBox3";
+            this.textBox3.PasswordChar = '*';
+            this.textBox3.Size = new System.Drawing.Size(556, 21);
+            this.textBox3.TabIndex = 1;
+            this.textBox3.DoubleClick += new System.EventHandler(this.DoubleClick_change_passwordchar);
             // 
             // pswchange
             // 

@@ -36,6 +36,8 @@ namespace Framework_Test.controls
             this.works = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.productionc = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.remarkmessage = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.删除行ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.panel1 = new System.Windows.Forms.Panel();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.label6 = new System.Windows.Forms.Label();
@@ -49,17 +51,15 @@ namespace Framework_Test.controls
             this.label2 = new System.Windows.Forms.Label();
             this.Work_content_textBox = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
-            this.Name_textBox = new System.Windows.Forms.TextBox();
-            this.button1 = new System.Windows.Forms.Button();
             this.panel2 = new System.Windows.Forms.Panel();
+            this.button1 = new System.Windows.Forms.Button();
             this.button2 = new System.Windows.Forms.Button();
-            this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
-            this.删除行ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.Name_comBox = new System.Windows.Forms.ComboBox();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
+            this.contextMenuStrip1.SuspendLayout();
             this.panel1.SuspendLayout();
             this.tableLayoutPanel1.SuspendLayout();
             this.panel2.SuspendLayout();
-            this.contextMenuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
             // dataGridView1
@@ -111,6 +111,21 @@ namespace Framework_Test.controls
             this.remarkmessage.HeaderText = "备注";
             this.remarkmessage.Name = "remarkmessage";
             // 
+            // contextMenuStrip1
+            // 
+            this.contextMenuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.删除行ToolStripMenuItem});
+            this.contextMenuStrip1.Name = "contextMenuStrip1";
+            this.contextMenuStrip1.Size = new System.Drawing.Size(113, 26);
+            this.contextMenuStrip1.Opening += new System.ComponentModel.CancelEventHandler(this.contextMenuStrip1_Opening);
+            // 
+            // 删除行ToolStripMenuItem
+            // 
+            this.删除行ToolStripMenuItem.Name = "删除行ToolStripMenuItem";
+            this.删除行ToolStripMenuItem.Size = new System.Drawing.Size(112, 22);
+            this.删除行ToolStripMenuItem.Text = "删除行";
+            this.删除行ToolStripMenuItem.Click += new System.EventHandler(this.删除行ToolStripMenuItem_Click);
+            // 
             // panel1
             // 
             this.panel1.Controls.Add(this.tableLayoutPanel1);
@@ -137,7 +152,7 @@ namespace Framework_Test.controls
             this.tableLayoutPanel1.Controls.Add(this.label2, 0, 1);
             this.tableLayoutPanel1.Controls.Add(this.Work_content_textBox, 1, 1);
             this.tableLayoutPanel1.Controls.Add(this.label1, 0, 0);
-            this.tableLayoutPanel1.Controls.Add(this.Name_textBox, 1, 0);
+            this.tableLayoutPanel1.Controls.Add(this.Name_comBox, 1, 0);
             this.tableLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutPanel1.Location = new System.Drawing.Point(0, 0);
             this.tableLayoutPanel1.Name = "tableLayoutPanel1";
@@ -217,6 +232,7 @@ namespace Framework_Test.controls
             this.workshop_textBox.Dock = System.Windows.Forms.DockStyle.Fill;
             this.workshop_textBox.Location = new System.Drawing.Point(83, 93);
             this.workshop_textBox.Name = "workshop_textBox";
+            this.workshop_textBox.ReadOnly = true;
             this.workshop_textBox.Size = new System.Drawing.Size(209, 21);
             this.workshop_textBox.TabIndex = 7;
             // 
@@ -246,13 +262,15 @@ namespace Framework_Test.controls
             this.label1.TabIndex = 2;
             this.label1.Text = "姓名";
             // 
-            // Name_textBox
+            // panel2
             // 
-            this.Name_textBox.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.Name_textBox.Location = new System.Drawing.Point(83, 3);
-            this.Name_textBox.Name = "Name_textBox";
-            this.Name_textBox.Size = new System.Drawing.Size(209, 21);
-            this.Name_textBox.TabIndex = 3;
+            this.panel2.Controls.Add(this.button1);
+            this.panel2.Controls.Add(this.button2);
+            this.panel2.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.panel2.Location = new System.Drawing.Point(0, 271);
+            this.panel2.Name = "panel2";
+            this.panel2.Size = new System.Drawing.Size(295, 45);
+            this.panel2.TabIndex = 4;
             // 
             // button1
             // 
@@ -265,16 +283,6 @@ namespace Framework_Test.controls
             this.button1.UseVisualStyleBackColor = true;
             this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
-            // panel2
-            // 
-            this.panel2.Controls.Add(this.button1);
-            this.panel2.Controls.Add(this.button2);
-            this.panel2.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.panel2.Location = new System.Drawing.Point(0, 271);
-            this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(295, 45);
-            this.panel2.TabIndex = 4;
-            // 
             // button2
             // 
             this.button2.Dock = System.Windows.Forms.DockStyle.Left;
@@ -285,20 +293,16 @@ namespace Framework_Test.controls
             this.button2.Text = "从Excel导入";
             this.button2.UseVisualStyleBackColor = true;
             // 
-            // contextMenuStrip1
+            // Name_comBox
             // 
-            this.contextMenuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.删除行ToolStripMenuItem});
-            this.contextMenuStrip1.Name = "contextMenuStrip1";
-            this.contextMenuStrip1.Size = new System.Drawing.Size(181, 48);
-            this.contextMenuStrip1.Opening += new System.ComponentModel.CancelEventHandler(this.contextMenuStrip1_Opening);
-            // 
-            // 删除行ToolStripMenuItem
-            // 
-            this.删除行ToolStripMenuItem.Name = "删除行ToolStripMenuItem";
-            this.删除行ToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
-            this.删除行ToolStripMenuItem.Text = "删除行";
-            this.删除行ToolStripMenuItem.Click += new System.EventHandler(this.删除行ToolStripMenuItem_Click);
+            this.Name_comBox.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.Name_comBox.FormattingEnabled = true;
+            this.Name_comBox.Location = new System.Drawing.Point(83, 3);
+            this.Name_comBox.Name = "Name_comBox";
+            this.Name_comBox.Size = new System.Drawing.Size(209, 20);
+            this.Name_comBox.TabIndex = 14;
+            this.Name_comBox.TextUpdate += new System.EventHandler(this.comboBox1_TextUpdate);
+            this.Name_comBox.TextChanged += new System.EventHandler(this.Name_comBox_TextChanged);
             // 
             // Data_Install
             // 
@@ -308,12 +312,13 @@ namespace Framework_Test.controls
             this.Controls.Add(this.panel1);
             this.Name = "Data_Install";
             this.Size = new System.Drawing.Size(959, 316);
+            this.Load += new System.EventHandler(this.Data_Install_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
+            this.contextMenuStrip1.ResumeLayout(false);
             this.panel1.ResumeLayout(false);
             this.tableLayoutPanel1.ResumeLayout(false);
             this.tableLayoutPanel1.PerformLayout();
             this.panel2.ResumeLayout(false);
-            this.contextMenuStrip1.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -340,11 +345,11 @@ namespace Framework_Test.controls
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.TextBox Work_content_textBox;
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.TextBox Name_textBox;
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.Panel panel2;
         private System.Windows.Forms.Button button2;
         private System.Windows.Forms.ContextMenuStrip contextMenuStrip1;
         private System.Windows.Forms.ToolStripMenuItem 删除行ToolStripMenuItem;
+        private System.Windows.Forms.ComboBox Name_comBox;
     }
 }

@@ -20,24 +20,67 @@ namespace Framework_Test.controls
 
         private void UserSettingGUI_Load(object sender, EventArgs e)
         {
+            showresult();
+        }
+
+        private void showresult()
+        {
             var conn = new ConnectDB.makeConnect();
-            conn.GetMessage("user");
+            //debugmsg(conn);
+            var usmsg = conn.GetMessage("UserGroup");
+            var re = from UserGroup i in usmsg group i by i.USworkshop into g select g;
+            treeView1.Nodes.Clear();
+            foreach (var item in re) {
+                var treno = new TreeNode(item.Key);
+                foreach (var val in item) {
+                    treno.Nodes.Add(new TreeNode($"姓名:{val.USName},工号:{val.USNumber},车间{val.USworkshop}"));
+                }
+                if (treno.Text == "车间0") {
+                    treno.ExpandAll();
+                }
+                treeView1.Nodes.Add(treno);
+            }
+            treeView1.CheckBoxes = true;
+        }
+        private void debugmsg(ConnectDB.makeConnect conn)
+        {
+            for (int i = 0; i < 9; i++) {
+                var usg = new UserGroup();
+                for (int j = 0; j < 8; j++) {
+                    usg.USName = $"姓名{i}{j}";
+                    usg.USNumber = $"Number_{i}_{j}";
+                    usg.USworkshop = $"车间{i}";
+                    insertintodb(conn, usg);
+                }
+            }
+        }
+
+        private void insertintodb(ConnectDB.makeConnect conn, UserGroup usg)
+        {
+            var USName = usg.USName;
+            var USNumber = usg.USNumber;
+            var USworkshop = usg.USworkshop;
+            var USRemarks = usg.USRemarks;
+            var parami = new {
+                USName,
+                USNumber,
+                USworkshop,
+                USRemarks
+            };
+            var result = new ValueDetail().Insert(conn.dbls[1].Install_sql, parami);
         }
 
         private void button1_Click(object sender, EventArgs e)
         {
             //insert to db
-
-            //show tree
-            for (int j = 0; j < 3; j++) {
-                var tno = new TreeNode($"厂区{j}");
-                for (int i = 0; i < 5; i++) {
-                    tno.Nodes.Add(new TreeNode($"姓名{i}{j}") { });
-                }
-                treeView1.Nodes.Add(tno);
-            }
-            treeView1.ExpandAll();
-            treeView1.CheckBoxes = true;
+            var new_us_msg = new UserGroup {
+                USName = textBox1.Text,
+                USNumber = textBox2.Text,
+                USworkshop = textBox3.Text,
+                USRemarks = textBox4.Text
+            };
+            insertintodb(new ConnectDB.makeConnect(), new_us_msg);
+            showresult();
             //init
             foreach (var item in panel1.Controls) {
                 if (item is TextBox) {

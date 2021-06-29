@@ -32,9 +32,21 @@ namespace Framework_Test
     internal class UserGroup : Dbconnection
     {
         public string USID { get; set; }
+        /// <summary>
+        /// 姓名
+        /// </summary>
         public string USName { get; set; }
+        /// <summary>
+        /// 工号
+        /// </summary>
         public string USNumber { get; set; }
+        /// <summary>
+        /// 厂区
+        /// </summary>
         public string USworkshop { get; set; }
+        /// <summary>
+        /// 备注
+        /// </summary>
         public string USRemarks { get; set; }
     }
     class ValueDetail : Dbconnection
@@ -60,23 +72,8 @@ namespace Framework_Test
             }
         }
         //add
-        public int Insert(ValueGroup con, string sql, object parami)
+        public int Insert(string sql, object parami)
         {
-            var Name = con.Name;
-            var Work_content = con.Work_content;
-            var length_of_work = con.length_of_work;
-            var workshop = con.workshop;
-            var Production_capacity = con.Production_capacity;
-            var Remarks = con.Remarks;
-            parami = new {
-                Name,
-                Work_content,
-                length_of_work,
-                workshop,
-                Production_capacity,
-                Remarks
-            };
-
             using (var conn = new SQLiteConnection(ConnectionString)) {
                 var a = conn.Execute(sql, parami);
                 return a;
@@ -110,7 +107,9 @@ namespace Framework_Test
         public IEnumerable<dynamic> GetDBMessage(makeConnect.dbvalue dbvalue)
         {
             using (var conn = new SQLiteConnection(ConnectionString)) {
-                if (dbvalue.name_db == "user") {
+                if (dbvalue.name_db == "UserGroup") {
+                    return conn.Query<UserGroup>(dbvalue.search_sql);
+                } else if (dbvalue.name_db == "ContractMessage") {
                     return conn.Query<ValueGroup>(dbvalue.search_sql);
                 } else {
                     return null;

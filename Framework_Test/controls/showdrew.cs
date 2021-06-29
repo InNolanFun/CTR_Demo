@@ -22,7 +22,33 @@ namespace Framework_Test.controls
         {
             InitChart();
             show_message();
+            DGVShow();
         }
+
+        private void DGVShow()
+        {
+            var conn = new ConnectDB.makeConnect();
+            var usmsg = conn.GetMessage("ContractMessage");
+            var dt = new DataTable();
+            dt.Columns.Add("姓名");
+            dt.Columns.Add("工作内容");
+            dt.Columns.Add("车间");
+            dt.Columns.Add("工作时间");
+            dt.Columns.Add("产能");
+            dt.Columns.Add("备注");
+            foreach (ValueGroup item in usmsg) {
+                var dr = dt.NewRow();
+                dr["姓名"] = item.Name;
+                dr["工作内容"] = item.Production_capacity;
+                dr["车间"] = item.workshop;
+                dr["工作时间"] = item.length_of_work;
+                dr["产能"] = item.Work_content;
+                dr["备注"] = item.Remarks;
+                dt.Rows.Add(dr);
+            }
+            dataGridView1.DataSource = dt;
+        }
+
         private Queue<double> dataQueue = new Queue<double>(100);
         private int curValue = 0;
         private int num = 5;//每次删除增加几个点

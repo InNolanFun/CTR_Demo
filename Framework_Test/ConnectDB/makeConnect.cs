@@ -9,7 +9,7 @@ namespace Framework_Test.ConnectDB
 {
     class makeConnect
     {
-        private List<dbvalue> dbls = new List<dbvalue>();
+        public List<dbvalue> dbls = new List<dbvalue>();
         public void checkDBexisit()
         {
             foreach (var item in dbls) {
@@ -49,7 +49,9 @@ namespace Framework_Test.ConnectDB
                                 ":Production_capacity," +
                                 ":Remarks" +
                             ")",
-                            "", "", ""));
+                            "",
+                            "select * from {0}",
+                            ""));
             //user
             dbls.Add(makedbvalue("UserGroup",
                             "Create table {0}( " +
@@ -70,7 +72,9 @@ namespace Framework_Test.ConnectDB
                                 ":USworkshop," +
                                 ":USRemarks" +
                             ")",
-                            "", "", ""));
+                            "",
+                            "select * from {0}",
+                            ""));
             return dbls;
         }
 
@@ -85,15 +89,6 @@ namespace Framework_Test.ConnectDB
             dbv.delete_sql = string.Format(delete_sql, dbv.name_db);
             return dbv;
         }
-
-        internal class UserGroup : Dbconnection
-        {
-            public string USID { get; set; }
-            public string USName { get; set; }
-            public string USNumber { get; set; }
-            public string USworkshop { get; set; }
-            public string USRemarks { get; set; }
-        }
         public class dbvalue
         {
             public string name_db { get; set; }
@@ -105,14 +100,15 @@ namespace Framework_Test.ConnectDB
             public string delete_sql { get; set; }
 
         }
-        public void GetMessage(string module)
+        public IEnumerable<dynamic> GetMessage(string module)
         {
             switch (module) {
-                case "user":
-                    new ValueDetail().GetAllValue();
-                    break;
+                case "UserGroup":
+                    return new ValueDetail().GetDBMessage(dbls[1]);
+                case "ContractMessage":
+                    return new ValueDetail().GetDBMessage(dbls[0]);
                 default:
-                    break;
+                    return null;
             }
         }
     }
