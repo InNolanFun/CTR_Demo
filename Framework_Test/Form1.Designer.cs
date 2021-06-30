@@ -38,8 +38,9 @@ namespace Framework_Test
             this.角色岗位ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.菜单功能ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.修改密码ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.tabControl1 = new System.Windows.Forms.TabControl();
             this.登录ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.tabControl1 = new System.Windows.Forms.TabControl();
+            this.登出ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -48,7 +49,8 @@ namespace Framework_Test
             this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.菜单ToolStripMenuItem,
             this.用户ToolStripMenuItem,
-            this.登录ToolStripMenuItem});
+            this.登录ToolStripMenuItem,
+            this.登出ToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
             this.menuStrip1.Size = new System.Drawing.Size(549, 25);
@@ -100,21 +102,21 @@ namespace Framework_Test
             // 用户管理ToolStripMenuItem
             // 
             this.用户管理ToolStripMenuItem.Name = "用户管理ToolStripMenuItem";
-            this.用户管理ToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.用户管理ToolStripMenuItem.Size = new System.Drawing.Size(153, 22);
             this.用户管理ToolStripMenuItem.Text = "用户管理";
             this.用户管理ToolStripMenuItem.Click += new System.EventHandler(this.TotalToolStripMenuItem_Click);
             // 
             // 角色岗位ToolStripMenuItem
             // 
             this.角色岗位ToolStripMenuItem.Name = "角色岗位ToolStripMenuItem";
-            this.角色岗位ToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.角色岗位ToolStripMenuItem.Size = new System.Drawing.Size(153, 22);
             this.角色岗位ToolStripMenuItem.Text = "角色/岗位设置";
             this.角色岗位ToolStripMenuItem.Click += new System.EventHandler(this.TotalToolStripMenuItem_Click);
             // 
             // 菜单功能ToolStripMenuItem
             // 
             this.菜单功能ToolStripMenuItem.Name = "菜单功能ToolStripMenuItem";
-            this.菜单功能ToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.菜单功能ToolStripMenuItem.Size = new System.Drawing.Size(153, 22);
             this.菜单功能ToolStripMenuItem.Text = "菜单功能设置";
             this.菜单功能ToolStripMenuItem.Visible = false;
             this.菜单功能ToolStripMenuItem.Click += new System.EventHandler(this.TotalToolStripMenuItem_Click);
@@ -122,9 +124,16 @@ namespace Framework_Test
             // 修改密码ToolStripMenuItem
             // 
             this.修改密码ToolStripMenuItem.Name = "修改密码ToolStripMenuItem";
-            this.修改密码ToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.修改密码ToolStripMenuItem.Size = new System.Drawing.Size(153, 22);
             this.修改密码ToolStripMenuItem.Text = "修改密码";
             this.修改密码ToolStripMenuItem.Click += new System.EventHandler(this.TotalToolStripMenuItem_Click);
+            // 
+            // 登录ToolStripMenuItem
+            // 
+            this.登录ToolStripMenuItem.Name = "登录ToolStripMenuItem";
+            this.登录ToolStripMenuItem.Size = new System.Drawing.Size(44, 21);
+            this.登录ToolStripMenuItem.Text = "登录";
+            this.登录ToolStripMenuItem.Click += new System.EventHandler(this.login);
             // 
             // tabControl1
             // 
@@ -136,12 +145,12 @@ namespace Framework_Test
             this.tabControl1.TabIndex = 1;
             this.tabControl1.ControlRemoved += new System.Windows.Forms.ControlEventHandler(this.tabControl1_ControlRemoved);
             // 
-            // 登录ToolStripMenuItem
+            // 登出ToolStripMenuItem
             // 
-            this.登录ToolStripMenuItem.Name = "登录ToolStripMenuItem";
-            this.登录ToolStripMenuItem.Size = new System.Drawing.Size(44, 21);
-            this.登录ToolStripMenuItem.Text = "登录";
-            this.登录ToolStripMenuItem.Click += new System.EventHandler(this.login);
+            this.登出ToolStripMenuItem.Name = "登出ToolStripMenuItem";
+            this.登出ToolStripMenuItem.Size = new System.Drawing.Size(44, 21);
+            this.登出ToolStripMenuItem.Text = "登出";
+            this.登出ToolStripMenuItem.Click += new System.EventHandler(this.登出ToolStripMenuItem_Click);
             // 
             // Form1
             // 
@@ -175,6 +184,7 @@ namespace Framework_Test
         private System.Windows.Forms.TabControl tabControl1;
         private System.Windows.Forms.ToolStripMenuItem 修改密码ToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem 登录ToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem 登出ToolStripMenuItem;
     }
 }
 

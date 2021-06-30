@@ -19,24 +19,26 @@ namespace Framework_Test.controls
 
         private void button1_Click(object sender, EventArgs e)
         {
-            var ls = new ValueGroup {
+            var ls = new ConnectDB.DB_ContractMessage.ValueGroup
+            {
                 length_of_work = length_of_work_textBox.Text,
-                Name = Name_comBox.Text,
+                UName = Name_comBox.Text,
                 Production_capacity = Production_capacity_textBox.Text,
                 Remarks = Remarks_textBox.Text,
                 workshop = workshop_textBox.Text,
                 Work_content = Work_content_textBox.Text
             };
+            new ConnectDB.DB_ContractMessage().Insert_DB(new List<ConnectDB.DB_ContractMessage.ValueGroup> { ls });
+            //show in dgv
             var dgv = dataGridView1;
             var rowc = dgv.Rows.Count - 1;
             dgv.Rows.Add();
-            dgv[0, rowc].Value = ls.Name;
+            dgv[0, rowc].Value = ls.UName;
             dgv[1, rowc].Value = ls.Work_content;
             dgv[2, rowc].Value = ls.length_of_work;
             dgv[3, rowc].Value = ls.workshop;
             dgv[4, rowc].Value = ls.Production_capacity;
             dgv[5, rowc].Value = ls.Remarks;
-            insertintodb(new ConnectDB.makeConnect(), ls);
             //reset text
             length_of_work_textBox.Text =
             Name_comBox.Text =
@@ -46,24 +48,6 @@ namespace Framework_Test.controls
             Work_content_textBox.Text =
             "";
             Name_comBox.Select();
-        }
-        private void insertintodb(ConnectDB.makeConnect conn, ValueGroup usg)
-        {
-            var Name = usg.Name;
-            var Work_content = usg.Work_content;
-            var length_of_work = usg.length_of_work;
-            var workshop = usg.workshop;
-            var Production_capacity = usg.Production_capacity;
-            var Remarks = usg.Remarks;
-            var parami = new {
-                Name,
-                Work_content,
-                length_of_work,
-                workshop,
-                Production_capacity,
-                Remarks
-            };
-            var result = new ValueDetail().Insert(conn.dbls[0].Install_sql, parami);
         }
         private void contextMenuStrip1_Opening(object sender, CancelEventArgs e)
         {
@@ -94,16 +78,15 @@ namespace Framework_Test.controls
 
         private void Data_Install_Load(object sender, EventArgs e)
         {
-            var conn = new ConnectDB.makeConnect();
-            var usmsg = conn.GetMessage("UserGroup");
-            var namels = (from UserGroup i in usmsg select i.USName).ToList();
+            var usmsg = new ConnectDB.DB_UserGroup().Search_DB();
+            var namels = (from ConnectDB.DB_UserGroup.UserGroup i in usmsg select i.USName).ToList();
 
-            lsdetail = (from UserGroup i in usmsg select i).ToList();
+            lsdetail = (from ConnectDB.DB_UserGroup.UserGroup i in usmsg select i).ToList();
             listCombobox = namels;
             Name_comBox.Items.Clear();
             Name_comBox.Items.AddRange(listCombobox.ToArray());
         }
-        private List<UserGroup> lsdetail = new List<UserGroup>();
+        private List<ConnectDB.DB_UserGroup.UserGroup> lsdetail = new List<ConnectDB.DB_UserGroup.UserGroup>();
         private List<string> listCombobox = new List<string>();
         private void comboBox1_TextUpdate(object sender, EventArgs e)
         {

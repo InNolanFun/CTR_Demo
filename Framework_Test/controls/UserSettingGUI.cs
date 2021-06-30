@@ -25,10 +25,8 @@ namespace Framework_Test.controls
 
         private void showresult()
         {
-            var conn = new ConnectDB.makeConnect();
-            var usmsg = conn.GetMessage("UserGroup");
-            //debugmsg(conn);
-            var re = from UserGroup i in usmsg group i by i.USworkshop into g select g;
+            var usmsg = new ConnectDB.DB_UserGroup().Search_DB();
+            var re = from ConnectDB.DB_UserGroup.UserGroup i in usmsg group i by i.USworkshop into g select g;
             treeView1.Nodes.Clear();
             foreach (var item in re) {
                 var treno = new TreeNode(item.Key);
@@ -42,50 +40,21 @@ namespace Framework_Test.controls
             }
             treeView1.CheckBoxes = true;
         }
-        private void debugmsg(ConnectDB.makeConnect conn)
-        {
-            for (int i = 0; i < 9; i++) {
-                var usg = new UserGroup();
-                for (int j = 0; j < 8; j++) {
-                    usg.USName = $"姓名{i}{j}";
-                    usg.USNumber = $"Number_{i}_{j}";
-                    usg.USworkshop = $"车间{i}";
-                    insertintodb(conn, usg);
-                }
-            }
-        }
-
-        private void insertintodb(ConnectDB.makeConnect conn, UserGroup usg)
-        {
-            var USName = usg.USName;
-            var USNumber = usg.USNumber;
-            var USworkshop = usg.USworkshop;
-            var USRemarks = usg.USRemarks;
-            var USPower = usg.USPower;
-            var USPsw = usg.USPsw;
-            var parami = new {
-                USName,
-                USNumber,
-                USworkshop,
-                USRemarks,
-                USPower,
-                USPsw
-            };
-            var result = new ValueDetail().Insert(conn.dbls[1].Install_sql, parami);
-        }
 
         private void button1_Click(object sender, EventArgs e)
         {
             //insert to db
-            var new_us_msg = new UserGroup {
-                USName = textBox1.Text,
-                USNumber = textBox2.Text,
-                USworkshop = textBox3.Text,
-                USRemarks = textBox4.Text,
-                USPower = comboBox1.Text,
-                USPsw = comboBox1.Text
-            };
-            insertintodb(new ConnectDB.makeConnect(), new_us_msg);
+            new ConnectDB.DB_UserGroup().Insert_DB(
+                new List<ConnectDB.DB_UserGroup.UserGroup> { 
+                    new ConnectDB.DB_UserGroup.UserGroup
+                        {
+                            USName = textBox1.Text,
+                            USNumber = textBox2.Text,
+                            USworkshop = textBox3.Text,
+                            USRemarks = textBox4.Text,
+                            USPower = comboBox1.Text,
+                            USPsw = comboBox1.Text
+                        } });
             showresult();
             //init
             foreach (var item in panel1.Controls) {

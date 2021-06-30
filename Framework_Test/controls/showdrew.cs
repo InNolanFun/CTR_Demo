@@ -27,8 +27,7 @@ namespace Framework_Test.controls
 
         private void DGVShow()
         {
-            var conn = new ConnectDB.makeConnect();
-            var usmsg = conn.GetMessage("ContractMessage");
+            var usmsg = new ConnectDB.DB_ContractMessage().Search_DB();
             var dt = new DataTable();
             dt.Columns.Add("姓名");
             dt.Columns.Add("工作内容");
@@ -36,9 +35,9 @@ namespace Framework_Test.controls
             dt.Columns.Add("工作时间");
             dt.Columns.Add("产能");
             dt.Columns.Add("备注");
-            foreach (ValueGroup item in usmsg) {
+            foreach (ConnectDB.DB_ContractMessage.ValueGroup item in usmsg) {
                 var dr = dt.NewRow();
-                dr["姓名"] = item.Name;
+                dr["姓名"] = item.UName;
                 dr["工作内容"] = item.Production_capacity;
                 dr["车间"] = item.workshop;
                 dr["工作时间"] = item.length_of_work;

@@ -98,8 +98,10 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="ConnectDB\connect.cs" />
-    <Compile Include="ConnectDB\makeConnect.cs" />
+    <Compile Include="ConnectDB\DB_ContractMessage.cs" />
+    <Compile Include="ConnectDB\DB_Default.cs" />
+    <Compile Include="ConnectDB\DB_DBName.cs" />
+    <Compile Include="ConnectDB\DB_UserGroup.cs" />
     <Compile Include="controls\ChangeUserMessage.cs">
       <SubType>UserControl</SubType>
     </Compile>

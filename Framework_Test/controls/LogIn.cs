@@ -28,9 +28,8 @@ namespace Framework_Test.controls
 
         private void button2_Click(object sender, EventArgs e)
         {
-            var conn = new ConnectDB.makeConnect();
-            var usmsg = conn.GetMessage("UserGroup");
-            var namels = from UserGroup i in usmsg
+            var usmsg = new ConnectDB.DB_UserGroup().Search_DB();
+            var namels = from ConnectDB.DB_UserGroup.UserGroup i in usmsg
                          where (i.USName == textBox1.Text && i.USPsw == textBox2.Text)
                          select i;
             if (namels.Count() != 0) {

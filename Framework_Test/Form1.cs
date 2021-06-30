@@ -51,25 +51,56 @@ namespace Framework_Test
 
         private void Form1_Load(object sender, EventArgs e)
         {
-            var conn = new ConnectDB.makeConnect();
-            conn.checkDBexisit();
+            
+            new ConnectDB.DB_UserGroup().Create();
+            new ConnectDB.DB_ContractMessage().Create();
+            //debug
+            //Createdebugmsg();
             login(null, null);
         }
-
+        private void Createdebugmsg()
+        {
+            var usglst = new List<ConnectDB.DB_UserGroup.UserGroup>()
+            {
+                new ConnectDB.DB_UserGroup.UserGroup{ 
+                    USName="t",
+                    USPsw="t",
+                },
+            };
+            for (int i = 0; i < 9; i++)
+            {
+                for (int j = 0; j < 8; j++)
+                {
+                    var usg = new ConnectDB.DB_UserGroup.UserGroup();
+                    usg.USName = $"姓名{i}{j}";
+                    usg.USNumber = $"Number_{i}_{j}";
+                    usg.USworkshop = $"车间{i}";
+                    usglst.Add(usg);
+                }
+            }
+            var changecount = new ConnectDB.DB_UserGroup().Insert_DB(usglst);
+        }
         private void login(object sender, EventArgs e)
         {
-            var s = menuStrip1.Items[1].OwnerItem;
-            var c = menuStrip1.Items.Count;
-            menuStrip1.Items[2].Visible = true;
-            menuStrip1.Items[0].Visible =
-            menuStrip1.Items[1].Visible = false;
-            if (new LogInForm().ShowDialog() == DialogResult.OK) {
-                menuStrip1.Items[2].Visible = false;
-            } else {
-                menuStrip1.Items[2].Visible = true;
-                menuStrip1.Items[0].Visible =
-                menuStrip1.Items[1].Visible = false;
+            menuStrip1.Items[2].Visible = true;//登录
+            menuStrip1.Items[3].Visible = false;//登出
+            menuStrip1.Items[0].Visible = menuStrip1.Items[1].Visible = false;//功能
+            if (new LogInForm().ShowDialog() == DialogResult.OK) {//登录成功
+                menuStrip1.Items[2].Visible = false;//登录
+                menuStrip1.Items[3].Visible = true;//登出
+                menuStrip1.Items[0].Visible = menuStrip1.Items[1].Visible = true;//功能
+            } else {//登录失败
+                menuStrip1.Items[2].Visible = true;//登录
+                menuStrip1.Items[3].Visible = false;//登出
+                menuStrip1.Items[0].Visible = menuStrip1.Items[1].Visible = false;//功能
             }
+        }
+
+        private void 登出ToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            menuStrip1.Items[2].Visible = true;//登录
+            menuStrip1.Items[3].Visible = false;//登出
+            menuStrip1.Items[0].Visible = menuStrip1.Items[1].Visible = false;//功能
         }
     }
 }
