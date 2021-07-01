@@ -14,7 +14,7 @@ namespace Framework_Test.ConnectDB
         public class ValueGroup : Dbconnection
         {
             public string ID { get; set; }
-            public string UName { get; set; }
+            public string Name { get; set; }
             public string Work_content { get; set; }
             public string length_of_work { get; set; }
             public string workshop { get; set; }
@@ -22,9 +22,9 @@ namespace Framework_Test.ConnectDB
             public string Remarks { get; set; }
         }
         private static readonly string TableName = "ContractMessage";
-        private string Create_SQL = $"Create table {TableName}( " +
+        private string Create_SQL = $"Create table {TableName} ( " +
                                 "ID INTEGER PRIMARY KEY NOT NULL," +
-                                "UName string," +
+                                "Name string," +
                                 "Work_content string," +
                                 "length_of_work string," +
                                 "workshop string," +
@@ -32,14 +32,14 @@ namespace Framework_Test.ConnectDB
                                 "Remarks string" +
                                 ")";
         private string Insert_SQL = $"insert into  {TableName} (" +
-                                "UName," +
+                                "Name," +
                                 "Work_content," +
                                 "length_of_work," +
                                 "workshop," +
                                 "Production_capacity," +
                                 "Remarks" +
                             ") values (" +
-                                ":UName," +
+                                ":Name," +
                                 ":Work_content," +
                                 ":length_of_work," +
                                 ":workshop," +
@@ -49,6 +49,8 @@ namespace Framework_Test.ConnectDB
         private string Search_SQL = $"select * from {TableName}";
         private string Update_SQL = "";
         private string Delete_SQL = "";
+        private string Check_tabcolumn = $"PRAGMA table_info({TableName});";
+
 
         public bool Create()
         {
@@ -58,7 +60,9 @@ namespace Framework_Test.ConnectDB
                     try {
                         var tableExists = conn.QuerySingle<int>("SELECT COUNT(*) AS QtRecords FROM sqlite_master WHERE type = 'table' AND name = :name",
                             new { name = TableName }, t) == 1;
-                        if (!tableExists) { conn.Execute(Create_SQL, transaction: t); }
+                        if (!tableExists) {
+                            conn.Execute(Create_SQL, transaction: t);
+                        }
                         t.Commit();//执行
                         return true;
                     } catch (System.Exception ex) {
@@ -73,15 +77,14 @@ namespace Framework_Test.ConnectDB
             int a = 0;
             using (var conn = new SQLiteConnection(ConnectionString)) {
                 foreach (var item in ValueList) {
-                    var UName = item.UName;
+                    var Name = item.Name;
                     var Work_content = item.Work_content;
                     var length_of_work = item.length_of_work;
                     var workshop = item.workshop;
                     var Production_capacity = item.Production_capacity;
                     var Remarks = item.Remarks;
-                    var pa = new
-                    {
-                        UName,
+                    var pa = new {
+                        Name,
                         Work_content,
                         length_of_work,
                         workshop,
@@ -97,6 +100,12 @@ namespace Framework_Test.ConnectDB
         {
             using (var conn = new SQLiteConnection(ConnectionString)) {
                 return conn.Query<ValueGroup>(Search_SQL);
+            }
+        }
+        public IEnumerable<decimal> Search_Columns()
+        {
+            using (var conn = new SQLiteConnection(ConnectionString)) {
+                return conn.Query<decimal>(Check_tabcolumn);
             }
         }
 

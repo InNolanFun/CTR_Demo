@@ -32,14 +32,15 @@ namespace Framework_Test.ConnectDB
             public string USworkshop { get; set; }
             /// <summary>
             /// 权限
+            /// 默认取值null = 不显示功能模块. 1 2 分别对应两个功能模块
             /// </summary>
-            public string USPower { get; set; }
+            public string USPower { get; set; } = "null";
             /// <summary>
             /// 备注
             /// </summary>
             public string USRemarks { get; set; }
         }
-        private static readonly string TableName = "ContractMessage";
+        private static readonly string TableName = "UserGroup";
         private string Create_SQL = $"Create table {TableName}( " +
                                 "USID INTEGER PRIMARY KEY NOT NULL," +
                                 "USName string," +
@@ -70,21 +71,16 @@ namespace Framework_Test.ConnectDB
 
         public bool Create()
         {
-            using (var conn = new SQLiteConnection(ConnectionString))
-            {
+            using (var conn = new SQLiteConnection(ConnectionString)) {
                 conn.Open();
-                using (var t = conn.BeginTransaction())
-                {//锁定db
-                    try
-                    {
+                using (var t = conn.BeginTransaction()) {//锁定db
+                    try {
                         var tableExists = conn.QuerySingle<int>("SELECT COUNT(*) AS QtRecords FROM sqlite_master WHERE type = 'table' AND name = :name",
                             new { name = TableName }, t) == 1;
                         if (!tableExists) { conn.Execute(Create_SQL, transaction: t); }
                         t.Commit();//执行
                         return true;
-                    }
-                    catch (System.Exception ex)
-                    {
+                    } catch (System.Exception ex) {
                         t.Rollback();//回滚
                         throw ex;
                     }
@@ -94,18 +90,15 @@ namespace Framework_Test.ConnectDB
         public int Insert_DB(List<UserGroup> ValueList)
         {
             int a = 0;
-            using (var conn = new SQLiteConnection(ConnectionString))
-            {
-                foreach (var item in ValueList)
-                {
+            using (var conn = new SQLiteConnection(ConnectionString)) {
+                foreach (var item in ValueList) {
                     var USName = item.USName;
                     var USPsw = item.USPsw;
                     var USNumber = item.USNumber;
                     var USworkshop = item.USworkshop;
                     var USPower = item.USPower;
                     var USRemarks = item.USRemarks;
-                    var USpa = new
-                    {
+                    var USpa = new {
                         USName,
                         USPsw,
                         USNumber,
@@ -121,8 +114,7 @@ namespace Framework_Test.ConnectDB
         }
         public IEnumerable<UserGroup> Search_DB()
         {
-            using (var conn = new SQLiteConnection(ConnectionString))
-            {
+            using (var conn = new SQLiteConnection(ConnectionString)) {
                 return conn.Query<UserGroup>(Search_SQL);
             }
         }

@@ -15,7 +15,7 @@ namespace Framework_Test
         public LogInForm()
         {
             InitializeComponent();
-            
+
         }
 
         private void button1_Click(object sender, EventArgs e)
@@ -35,7 +35,7 @@ namespace Framework_Test
                          select i;
             if (namels.Count() != 0) {
                 var usdetail = namels.ToList()[0];
-                this.Tag = usdetail.USPower?.Split('.');
+                this.Tag = usdetail.USPower;
                 this.DialogResult = DialogResult.OK;
             } else {
                 textBox1.Select();
@@ -47,12 +47,9 @@ namespace Framework_Test
         private void textBox2_DoubleClick(object sender, EventArgs e)
         {
             var tex = sender as TextBox;
-            if (tex.PasswordChar == '*')
-            {
+            if (tex.PasswordChar == '*') {
                 tex.PasswordChar = '\0';
-            }
-            else
-            {
+            } else {
                 tex.PasswordChar = '*';
             }
         }

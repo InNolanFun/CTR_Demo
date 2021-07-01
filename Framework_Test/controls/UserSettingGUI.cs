@@ -45,7 +45,7 @@ namespace Framework_Test.controls
         {
             //insert to db
             new ConnectDB.DB_UserGroup().Insert_DB(
-                new List<ConnectDB.DB_UserGroup.UserGroup> { 
+                new List<ConnectDB.DB_UserGroup.UserGroup> {
                     new ConnectDB.DB_UserGroup.UserGroup
                         {
                             USName = textBox1.Text,
@@ -61,7 +61,11 @@ namespace Framework_Test.controls
                 if (item is TextBox) {
                     (item as TextBox).Text = "";
                 }
+                if (item is ComboBox) {
+                    (item as ComboBox).Text = "";
+                }
             }
+            textBox3.Select();
         }
     }
 }

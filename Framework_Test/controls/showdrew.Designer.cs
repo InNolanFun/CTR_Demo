@@ -44,13 +44,13 @@ namespace Framework_Test.controls
             this.chart1.Dock = System.Windows.Forms.DockStyle.Bottom;
             legend1.Name = "Legend1";
             this.chart1.Legends.Add(legend1);
-            this.chart1.Location = new System.Drawing.Point(0, 196);
+            this.chart1.Location = new System.Drawing.Point(0, 202);
             this.chart1.Name = "chart1";
             series1.ChartArea = "ChartArea1";
             series1.Legend = "Legend1";
             series1.Name = "Series1";
             this.chart1.Series.Add(series1);
-            this.chart1.Size = new System.Drawing.Size(723, 150);
+            this.chart1.Size = new System.Drawing.Size(723, 144);
             this.chart1.TabIndex = 0;
             this.chart1.Text = "chart1";
             // 
@@ -60,8 +60,9 @@ namespace Framework_Test.controls
             this.dataGridView1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dataGridView1.Location = new System.Drawing.Point(0, 0);
             this.dataGridView1.Name = "dataGridView1";
+            this.dataGridView1.ReadOnly = true;
             this.dataGridView1.RowTemplate.Height = 23;
-            this.dataGridView1.Size = new System.Drawing.Size(723, 196);
+            this.dataGridView1.Size = new System.Drawing.Size(723, 202);
             this.dataGridView1.TabIndex = 1;
             // 
             // showdrew

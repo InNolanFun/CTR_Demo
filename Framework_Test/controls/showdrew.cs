@@ -37,7 +37,7 @@ namespace Framework_Test.controls
             dt.Columns.Add("备注");
             foreach (ConnectDB.DB_ContractMessage.ValueGroup item in usmsg) {
                 var dr = dt.NewRow();
-                dr["姓名"] = item.UName;
+                dr["姓名"] = item.Name;
                 dr["工作内容"] = item.Production_capacity;
                 dr["车间"] = item.workshop;
                 dr["工作时间"] = item.length_of_work;

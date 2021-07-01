@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Windows.Forms;
+using System.Linq;
 
 namespace Framework_Test
 {
@@ -51,26 +52,29 @@ namespace Framework_Test
 
         private void Form1_Load(object sender, EventArgs e)
         {
-            
-            new ConnectDB.DB_UserGroup().Create();
+
+            var use = new ConnectDB.DB_UserGroup();
+            use.Create();
+            var s = from ConnectDB.DB_UserGroup.UserGroup i in use.Search_DB() where (i.USName == "t" & i.USPsw == "t") select i;
+            if (s.Count() == 0) {
+                use.Insert_DB(new List<ConnectDB.DB_UserGroup.UserGroup> {
+                    new ConnectDB.DB_UserGroup.UserGroup { USName = "t", USPsw = "t", USPower = "0" } ,
+                    new ConnectDB.DB_UserGroup.UserGroup { USName = "t1", USPsw = "t", USPower = "1" } ,
+                    new ConnectDB.DB_UserGroup.UserGroup { USName = "t2", USPsw = "t", USPower = "2" } ,
+                    new ConnectDB.DB_UserGroup.UserGroup { USName = "tnull", USPsw = "t" },
+                });
+            }
             new ConnectDB.DB_ContractMessage().Create();
             //debug
             //Createdebugmsg();
+
             login(null, null);
         }
         private void Createdebugmsg()
         {
-            var usglst = new List<ConnectDB.DB_UserGroup.UserGroup>()
-            {
-                new ConnectDB.DB_UserGroup.UserGroup{ 
-                    USName="t",
-                    USPsw="t",
-                },
-            };
-            for (int i = 0; i < 9; i++)
-            {
-                for (int j = 0; j < 8; j++)
-                {
+            var usglst = new List<ConnectDB.DB_UserGroup.UserGroup>();
+            for (int i = 0; i < 9; i++) {
+                for (int j = 0; j < 8; j++) {
                     var usg = new ConnectDB.DB_UserGroup.UserGroup();
                     usg.USName = $"姓名{i}{j}";
                     usg.USNumber = $"Number_{i}_{j}";
@@ -85,11 +89,21 @@ namespace Framework_Test
             menuStrip1.Items[2].Visible = true;//登录
             menuStrip1.Items[3].Visible = false;//登出
             menuStrip1.Items[0].Visible = menuStrip1.Items[1].Visible = false;//功能
-            if (new LogInForm().ShowDialog() == DialogResult.OK) {//登录成功
+            this.Visible = false;
+            var loginf = new LogInForm();
+            if (loginf.ShowDialog() == DialogResult.OK) {//登录成功
+                var powerls = loginf.Tag.ToString();
+                if (powerls == "0" || powerls == "1") {
+                    menuStrip1.Items[0].Visible = true;//功能1
+                }
+                if (powerls == "0" || powerls == "2") {
+                    menuStrip1.Items[1].Visible = true;//功能2
+                }
+                this.Visible = true;
                 menuStrip1.Items[2].Visible = false;//登录
                 menuStrip1.Items[3].Visible = true;//登出
-                menuStrip1.Items[0].Visible = menuStrip1.Items[1].Visible = true;//功能
             } else {//登录失败
+                this.Visible = true;
                 menuStrip1.Items[2].Visible = true;//登录
                 menuStrip1.Items[3].Visible = false;//登出
                 menuStrip1.Items[0].Visible = menuStrip1.Items[1].Visible = false;//功能

@@ -19,10 +19,9 @@ namespace Framework_Test.controls
 
         private void button1_Click(object sender, EventArgs e)
         {
-            var ls = new ConnectDB.DB_ContractMessage.ValueGroup
-            {
+            var ls = new ConnectDB.DB_ContractMessage.ValueGroup {
                 length_of_work = length_of_work_textBox.Text,
-                UName = Name_comBox.Text,
+                Name = Name_comBox.Text,
                 Production_capacity = Production_capacity_textBox.Text,
                 Remarks = Remarks_textBox.Text,
                 workshop = workshop_textBox.Text,
@@ -33,7 +32,7 @@ namespace Framework_Test.controls
             var dgv = dataGridView1;
             var rowc = dgv.Rows.Count - 1;
             dgv.Rows.Add();
-            dgv[0, rowc].Value = ls.UName;
+            dgv[0, rowc].Value = ls.Name;
             dgv[1, rowc].Value = ls.Work_content;
             dgv[2, rowc].Value = ls.length_of_work;
             dgv[3, rowc].Value = ls.workshop;
